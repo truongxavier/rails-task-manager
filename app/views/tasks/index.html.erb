@@ -1,0 +1,19 @@
+  <div class="row justify-content-center mt-4">
+     <div class="col-lg-4 bg-white rounded shadow-sm p-5">
+      <h1 class="mb-3">🗒 My Todo List</h1>
+      <div id="todosContainer">
+        <% @tasks.each do |task| %>
+          <div class="shadow-sm rounded px-4 py-3 mb-2 border d-flex">
+            <input class="d-flex form-check-input me-1 " type="checkbox" <% if task.completed %> checked <% end %>>
+            <div class="title">
+              <strong><%= link_to task.title, task_path(task) %></strong>
+              <%= link_to task_path(task), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+                <i class="fa fa-trash" aria-hidden="true"></i>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+        <%= link_to 'Add a new task', tasks_new_path , class: 'btn btn-primary' %>
+      </div>
+    </div>
+  </div>
